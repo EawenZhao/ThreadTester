@@ -6,6 +6,7 @@
  */
 public class App {
     public final static int num = 10;
+
     public static void main(String[] args) throws InterruptedException {
         Thread[] threads = new Thread[num];
         for (int i = 0; i < num; i++) {
@@ -16,7 +17,11 @@ public class App {
             //threads[i].join();
         }
 
-        System.out.println("网站共有"+Singleton.getInstance().getCounter()+"个用户登录");
+        for (Thread t : threads) {
+            t.join();
+        }
+
+        System.out.println("网站共有" + Singleton.getInstance().getCounter() + "个用户登录");
 
     }
 }
